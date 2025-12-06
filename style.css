@@ -1,0 +1,556 @@
+
+/* =========================== PROCESS FORM STYLING =========================== */
+.process-form {
+  display: none;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 40;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#eventNameDisplay {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* =========================== CONTESTANT TABLE =========================== */
+#contestantTable {
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 0.5rem;
+  table-layout: fixed; /* ensures equal column widths */
+  margin-bottom: 0.5rem;
+  min-width: 520px;
+  overflow-x: auto;
+  display: block;
+}
+
+#contestantTable th,
+#contestantTable td {
+  border: 1px solid #000;
+  padding: 0.2rem; /* compact cells */
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+  font-size: 0.75rem;
+  word-break: break-word;
+  overflow: hidden;
+  height: 1.2rem;
+  transition: width 0.3s ease; /* smooth column resizing */
+}
+
+/* alternate header color */
+#contestantTable th {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  #contestantTable {
+    min-width: 100%;
+    overflow-x: scroll;
+  }
+}
+
+/* ======================= INPUTS AND TEXTAREAS ========================= */
+input, textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+input:focus, textarea:focus {
+  border-color: #9333ea;
+  box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+}
+
+/* =========================== QUESTION MARK ICON=========================== */
+.help-icon {
+  position: absolute;
+  background: #3b82f6;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s ease; /* smooth move animation */
+  z-index: 50;
+}
+
+
+@media (max-width: 1024px) {
+  .help-icon { left: calc(50% + 270px); top: 30%; }
+}
+@media (max-width: 768px) {
+  .help-icon { position: static; margin: 10px auto 0; display: flex; }
+}
+@media (max-width: 480px) {
+  .help-icon { width: 26px; height: 26px; font-size: 16px; margin-top: 8px; }
+}
+
+/* =========================== MODALS =========================== */
+#helpModal, #customizeModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  overflow: hidden;
+}
+#helpModal.show, #customizeModal.show {
+  display: flex !important;
+  animation: fadeInUp 0.3s ease;
+}
+#helpModal .modal-content, #customizeModal .modal-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 650px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  max-height: 90vh;
+  animation: fadeInUp 0.3s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+#helpModal button#closeHelp, #customizeModal button#closeCustomize {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #555;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+#helpModal button#closeHelp:hover, #customizeModal button#closeCustomize:hover { color: #000; }
+
+/* =========================== CRITERIA LIST =========================== */
+.criteria-title {
+  font-weight: bold;
+  color: #4f46e5;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+.criteria-sublist, #criteriaList { list-style: none; padding-left: 0; margin: 0; }
+.criteria-sublist li { margin-left: 1rem; color: #4b5563; margin-bottom: 0.25rem; }
+
+/* =========================== EDIT CRITERIA MODAL =========================== */
+#criteriaEditForm {
+  display: flex;
+  flex-wrap: wrap;              /* ✅ allow wrapping */
+  gap: 0.75rem;
+  justify-content: space-between;
+  align-items: stretch;
+  position: relative;
+  padding-bottom: 1rem;
+  overflow-y: auto;             /* optional scroll if content exceeds modal */
+  max-height: 70vh;             /* optional scroll limit */
+}
+
+.criteria-pair {
+  flex: 1 1 48%;                /* ✅ 2 equal items per row */
+  min-width: 280px;             /* prevent too small columns */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: all 0.3s ease;    /* smooth resize on delete */
+}
+
+/* ✅ Responsive: single column on small screens */
+@media (max-width: 768px) {
+  .criteria-pair {
+    flex: 1 1 100%;
+  }
+}
+
+.criteria-pair textarea {
+  width: 100% !important;
+  min-width: 300px;
+  box-sizing: border-box;
+  resize: vertical;
+  overflow: hidden;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+}
+#criteriaButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+#addCriteriaBtn, #removeCriteriaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+#addCriteriaBtn { background-color: #4F46E5; color: white; }
+#addCriteriaBtn:hover { background-color: #4338CA; transform: translateY(-1px); }
+#removeCriteriaBtn { background-color: #EF4444; color: white; }
+#removeCriteriaBtn:hover { background-color: #DC2626; transform: translateY(-1px); }
+
+/* ================= CUSTOMIZE MODAL FORM IMPROVEMENT ================== */
+#customizeModal .modal-content {
+  padding: 2rem 2.5rem;
+}
+#customizeModal label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.3rem;
+}
+#customizeModal input[type="text"],
+#customizeModal input[type="number"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+#customizeModal input[type="text"]:focus,
+#customizeModal input[type="number"]:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  background-color: #ffffff;
+}
+#customizeModal .space-y-4 > div { margin-bottom: 1rem; }
+#customizeModal .flex.justify-end { margin-top: 1rem; }
+#customizeModal button { font-weight: 600; padding: 0.6rem 1.25rem; border-radius: 0.5rem; }
+
+/* =========================== CONTESTANT IMAGE GALLERY =========================== */
+#imageGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+.contestant-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.contestant-card img {
+  width: 100%;
+  max-width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 2px solid #ccc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contestant-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.contestant-label {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ====================== PROCESS PAGE LAYOUT ====================== */
+#processContainer {
+  display: block;            /* center default */
+  position: relative;        /* allow help icon to move */
+  max-width: 630px;          /* shrink-wrap width like your recent code */
+  margin: 5rem auto 2rem auto; /* centered initially */
+}
+
+/* PROCESS FORM: shrink-wrap to table width */
+#processForm {
+  display: block;
+  width: auto;               /* auto width to fit table */
+  max-width: 95%;            /* prevent overflow on small screens */
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  box-sizing: border-box;
+
+  /* 🔧 Add these lines */
+  max-height: 70vh;      /* limit height to 70% of screen */
+  overflow-y: auto;      /* add vertical scroll if content exceeds */
+}
+
+#processForm::-webkit-scrollbar {
+  width: 8px;
+}
+#processForm::-webkit-scrollbar-thumb {
+  background-color: #a3a3a3;
+  border-radius: 10px;
+}
+#processForm::-webkit-scrollbar-thumb:hover {
+  background-color: #737373;
+}
+
+
+/* HELP ICON */
+.help-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;               /* relative to container */
+  background: #3b82f6;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+/* ====================== AFTER SAVE: LEFT SIDE IMAGE GALLERY ====================== */
+#processContainer.active {
+  display: flex;             /* form + gallery side by side */
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1400px;         /* expanded width */
+  margin: 2rem auto;
+}
+
+
+
+#processImageGallery {
+  display: grid;          
+  flex: 0 0 45%;
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* ✅ updated */
+  gap: 1rem;
+  justify-items: center;
+  align-items: start;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin-top: 3rem;
+}
+
+
+/* INDIVIDUAL CONTESTANT CARD */
+#processImageGallery .contestant-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  width: 100%; /* ✅ responsive width from grid */
+  height: auto; /* ✅ auto height */
+  padding: 0.5rem;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#processImageGallery .contestant-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* ✅ make square and auto-resize */
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+#processImageGallery .contestant-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+/* RESPONSIVE UPDATES */
+@media (max-width: 1024px) {
+  #processContainer.active {
+    flex-direction: column;
+    align-items: center;
+  }
+  #processImageGallery {
+    flex: 0 0 auto;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  #processImageGallery {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 3rem;
+  }
+}
+
+/* ========================= FINALIZATION MODAL ========================= */
+#finalizationModal {
+  position: fixed;
+  inset: 0;                        /* top:0; left:0; width:100%; height:100% */
+  display: none;                    /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);  /* semi-transparent overlay */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 100;                     /* above page content */
+  overflow: hidden;
+}
+
+#finalizationModal.show {
+  display: flex !important;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+#finalizationModal .modal-content {
+  background-color: #fff;           /* solid white */
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  width: 80%;
+  max-width: 600px;                 /* same as Customize modal */
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  position: relative;               /* for close button */
+  z-index: 101;                     /* ensure content is above overlay */
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+/* Close button hover style */
+#finalizationModal button#closeFinalization {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #555;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#finalizationModal button#closeFinalization:hover {
+  color: #000;
+}
+
+/* ========================= ANIMATION ========================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========================= ADD MODAL ========================= */
+#addRoundModal.show {
+  display: flex !important;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+/* ========================= ADD ROUND BUTTON ========================= */
+#manualAddRoundBtn {
+  position: absolute;
+  top: 5rem;      /* distance from top */
+  right: 7rem;    /* distance from right */
+  z-index: 100;   /* ensure it's above other elements */
+  padding: 0.5rem 1rem;
+  background-color: #4F46E5;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+  display: none; /* hide initially */
+}
+
+#manualAddRoundBtn:hover {
+  background-color: #4338CA;
+  transform: translateY(-1px);
+}
+
+/* ========================= DEPLOY BUTTON ========================= */
+#deployBtn {
+  position: absolute;
+  top: 5rem;
+  right: 16rem; 
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background-color: #008000;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+  display: none; /* hide initially */
+}
+
+#deployBtn:hover {
+  background-color: #008000;
+  transform: translateY(-1px);
+}
