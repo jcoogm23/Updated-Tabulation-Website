@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Judging & Scoring System</title>
+    <link rel="stylesheet" href="judge.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-50 text-slate-800">
+
+  <!--  Header / Navigation  -->
+<header>
+  <nav class="bg-gradient-to-r from-indigo-500 to-blue-500 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
+      <h1 class="text-white text-2xl font-bold mb-4 md:mb-0"></h1>
+      <div class="flex flex-wrap gap-3">
+
+    <!-- Save / Cancel Actions  -->
+<div id="criteriaActions" class="hidden flex justify-center gap-4 mt-4">
+  <button id="saveCriteriaBtn" class="px-6 py-2 bg-green-500 text-white rounded-xl shadow hover:bg-green-600 transition">
+    Save
+  </button>
+
+  <button id="cancelCriteriaBtn" class="px-6 py-2 bg-red-500 text-white rounded-xl shadow hover:bg-red-600 transition">
+    Cancel
+  </button>
+</div>
+
+<!-- Animation Message -->
+<p id="criteriaSaveMessage" class="text-green-600 text-sm mt-2 opacity-0 text-center">
+  Criteria saved successfully!
+</p>
+
+</div>
+    </div>
+  </div>
+</div>
+
+    <script src="judge.js"></script>
+  </body>
+  </html>

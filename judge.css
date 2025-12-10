@@ -1,0 +1,83 @@
+/* ======= GLOBAL RESET ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #0f0f10;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ======= NAVIGATION ======= */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+nav a {
+  color: #aaa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+nav a.active,
+nav a:hover {
+  background: #ffffff20;
+  color: #fff;
+}
+
+/* ======= SECTIONS (STATIC UI ONLY) ======= */
+.page-section {
+  display: none;
+  padding: 40px;
+}
+
+.page-section.active {
+  display: block;
+}
+
+.page-title {
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #333;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 50%; /* static example */
+  background: #00d4ff;
+}
+
+.process-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.process-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #ffffff20;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 18px;
+}
+
+
