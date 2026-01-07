@@ -1,39 +1,5 @@
+
 /* ======= GLOBAL RESET ======= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background: #0f0f10;
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* ======= NAVIGATION ======= */
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 0;
-}
-
-nav a {
-  color: #aaa;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-  padding: 8px 14px;
-  border-radius: 8px;
-}
-
-nav a.active,
-nav a:hover {
-  background: #ffffff20;
-  color: #fff;
-}
 
 /* ======= SECTIONS (STATIC UI ONLY) ======= */
 .page-section {
@@ -45,39 +11,342 @@ nav a:hover {
   display: block;
 }
 
-.page-title {
-  font-size: 28px;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
 .progress-bar {
   height: 10px;
   background: #333;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 7px;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  width: 50%; /* static example */
+  width: 15%; /* static example */
   background: #00d4ff;
 }
 
-.process-grid {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+/* ======= EMPTY STATE LOADER ======= */
+.loader-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+.loader-dots div {
+  width: 12px;
+  height: 12px;
+  background-color: #6366f1; /* indigo */
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+.loader-dots div:nth-child(2) { animation-delay: 0.2s; }
+.loader-dots div:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  from { transform: translateY(0); opacity: 0.6; }
+  to { transform: translateY(-8px); opacity: 1; }
 }
 
-.process-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid #ffffff20;
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 18px;
+/* ======= ROUND GALLERY SECTION ======= */
+.round-gallery-section {
+  border: 2px solid #4f46e5;
+  border-radius: 0.75rem;
+  background-color: #eef2ff;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+.round-gallery-section h2 {
+  color: #4f46e5;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-align: center;
 }
 
+/* ======= JUDGE CARD ======= */
+.judge-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
 
+/* ======= CONTESTANT CARD ======= */
+.contestant-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 2px solid #ccc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contestant-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.contestant-card p {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ======= JUDGE DROPDOWN (UPDATED AESTHETICALLY) ======= */
+#judgeDropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.5rem;
+  width: 14rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(240,244,255,0.85)); /* semi-transparent for blur */
+  color: #1f2937;
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  padding: 0.75rem 0;
+  z-index: 50;
+  transform-origin: top center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
+
+  /* Backdrop blur: vendor-prefixed first, standard after */
+  -webkit-backdrop-filter: blur(10px);  /* Safari/iOS */
+  backdrop-filter: blur(10px);          /* modern browsers */
+}
+
+/* Show dropdown */
+#judgeDropdown.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Username & Role text */
+#judgeDropdown p {
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1e293b;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.5rem;
+}
+#judgeDropdown p:hover {
+  background-color: #e0e7ff; /* light indigo background */
+  color: #4f46e5; /* indigo text */
+}
+
+/* Logout button */
+#judgeDropdown button {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1.25rem;
+  margin-top: 0.5rem;
+  color: #dc2626;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+#judgeDropdown button:hover {
+  background-color: #f0e7ff; /* subtle purple highlight */
+  color: #4f46e5;
+}
+
+/* User icon arrow indicator */
+#judgeUserIconContainer::after {
+  content: '▼';
+  display: inline-block;
+  font-size: 0.6rem;
+  margin-left: 0.3rem;
+  color: #ffffff;
+  transition: transform 0.25s ease;
+}
+#judgeUserIconContainer.active::after {
+  transform: rotate(-180deg);
+}
+
+/* Optional: subtle hover on icon itself */
+#judgeUserIconContainer:hover #judgeUserIcon {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* ======= LOGOUT CONFIRMATION MODAL ======= */
+#logoutModal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+}
+
+#logoutModal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  transform: scale(0.95);
+  transition: transform 0.25s ease-in-out;
+}
+
+#logoutModal.show .modal-card {
+  transform: scale(1);
+}
+
+.modal-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.modal-buttons .btn-yes,
+.modal-buttons .btn-no {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-buttons .btn-yes {
+  background-color: #dc2626;
+  color: white;
+}
+
+.modal-buttons .btn-yes:hover {
+  background-color: #b91c1c;
+}
+
+.modal-buttons .btn-no {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.modal-buttons .btn-no:hover {
+  background-color: #d1d5db;
+}
+
+/* UDPATED CODE - Custom Scrollbar to match screenshot */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f9fafb;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+/* Modal States */
+#criteriaModal.flex {
+  display: flex;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bullet Point Styling */
+.criteria-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  color: #4b5563; /* slate-600 */
+  font-size: 0.95rem;
+}
+.criteria-item::before {
+  content: "•";
+  color: #4b5563;
+  font-weight: bold;
+  margin-right: 12px;
+}
+/* FORCE CENTERING BEHAVIOR */
+#criteriaModal:not(.hidden) {
+  display: block !important; /* The outer container displays */
+}
+
+/* Ensure the wrapper inside centers the card */
+#criteriaModal > div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* REMOVE ALL BULLETS & PADDING */
+#criteriaContent ul {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+#criteriaContent li {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 10px;
+  color: #4b5563; /* slate-600 */
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Matching the Header Style */
+#criteriaContent h3 {
+  color: #4f46e5;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+/* Limit the overall width so it matches Admin proportions */
+main {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* Ensure Round boxes don't grow too tall or wide */
+.round-wrapper {
+    width: 100%;
+    max-width: 800px; /* Constrains the table side */
+    border: 2px solid #6366f1;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    background: white;
+}
+
+/* Constrain the Right Side Image Gallery */
+#processImageGallery {
+    width: 100%;
+    max-width: 450px; /* Constrains the image side */
+}
+
+/* Small thumbnails like Admin */
+.contestant-card img {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 8px;
+}
