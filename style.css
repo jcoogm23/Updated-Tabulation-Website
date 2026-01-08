@@ -1,3 +1,4 @@
+
 /* =========================== PROCESS FORM STYLING =========================== */
 .process-form {
   display: none;
@@ -603,6 +604,7 @@ input:focus, textarea:focus {
   padding: 1rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 .round-gallery-section h3 {
   color: #4f46e5;
   font-weight: 700;
@@ -611,7 +613,7 @@ input:focus, textarea:focus {
 }
 
 .judge-table-container {
-  position: relative; /* kailangan para gumana ang absolute positioning ng icon */
+  position: relative; 
 }
 .judge-table-container .help-icon {
   position: absolute;
@@ -642,165 +644,417 @@ input:focus, textarea:focus {
   z-index: 1000; /* keep modal above overlay */
 }
 
-/* UPDATED CODE UP TO THE END OF CODE ================= ADMIN DROPDOWN ================= */
-
+/* ================= ADMIN DROPDOWN ================= */
 #adminDropdown {
-  position: absolute;
-  right: 0;
-  top: 120%;
-  width: 12rem;
-  background: #ffffff;
-  border-radius: 0.75rem;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-  overflow: hidden;
-  z-index: 1000;
+position: absolute;
+right: 0;
+top: 120%;
+width: 12rem;
+background: #ffffff;
+border-radius: 0.75rem;
+box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+overflow: hidden;
+z-index: 1000;
 }
 
 #adminDropdown div {
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  color: #374151;
+padding: 0.5rem 1rem;
+font-size: 0.8rem;
+color: #374151;
 }
 
 #adminDropdown button {
-  width: 100%;
-  text-align: left;
-  padding: 0.6rem 1rem;
-  font-weight: 700;
-  color: #dc2626;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+width: 100%;
+text-align: left;
+padding: 0.6rem 1rem;
+font-weight: 700;
+color: #dc2626;
+background: transparent;
+border: none;
+cursor: pointer;
 }
 
 #adminDropdown button:hover {
-  background-color: #fee2e2;
+background-color: #fee2e2;
+color: #4f46e5;
 }
 
-/* ================= OPTIONAL ARROW INDICATOR ================= */
 
-#adminUserIconContainer::after {
-  content: "▼";
-  font-size: 0.6rem;
-  margin-left: 0.3rem;
-  color: #ffffff;
-  transition: transform 0.25s ease;
-}
-
-#adminUserIconContainer.active::after {
-  transform: rotate(-180deg);
-}
-
-#criteriaEditForm {
-  display: block !important;           /* Changed from flex to block */
-  width: 100% !important;
-  position: relative;
-  padding-bottom: 1rem;
-  overflow-y: auto;
-  max-height: 70vh;
-  padding-right: 10px;
+/* ================= SCOREBOARD ================= */
+.scoreboard-card {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.4); /* matches gradient tone */
+  text-align: center;
+  color: white;
+  height: 250px;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
 }
 
-.criteria-pair {
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin-bottom: 1.25rem !important;   /* Spacing between criteria */
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  background: #ffffff;
-  overflow: hidden;
+.scoreboard-card img {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
 }
 
-.criteria-pair:focus-within {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+.scoreboard-card .percent {
+  margin-top: 1.5rem;
+  color: #4ade80; /* green */
+  font-size: 1.5rem;
+  font-weight: bold;
 }
-.criteria-pair {
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  flex: none !important;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  background: #ffffff;
-  overflow: hidden;
-  margin-bottom: 1rem;
+.scoreboard-card .label {
+  display: none; /* 🔒 hide contestant number for anonymous vibe */
 }
 
-#criteriaEditForm > * {
-  flex: none !important;
-  width: 100% !important;
-}
+/* =========================== RESPONSIVE DESIGN =========================== */
 
-.criteria-pair textarea[data-type="title"],
-.criteria-pair textarea[data-type="sublist"] {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box;
-}
+/* ==================== MOBILE FIRST (320px - 479px) ==================== */
+@media (max-width: 479px) {
+  /* Navigation */
+  nav .max-w-7xl {
+    padding: 0 1rem;
+  }
+  
+  nav .flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  nav a {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
 
-.criteria-pair:focus-within {
-    border-color: #6366f1; /* Indigo border when typing */
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
+  /* Process Container */
+  #processContainer {
+    margin: 4rem 0.5rem 1rem;
+    max-width: 100%;
+    padding: 0.5rem;
+  }
 
-.criteria-pair textarea[data-type="title"] {
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 12px 15px;
-  font-weight: 700;
-  color: #4338ca;
-  background: #f8fafc;
-  border: none;
-  border-bottom: 1px solid #e2e8f0;
-  resize: none;
-  font-size: 1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-}
+  #processForm {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem;
+    max-height: 60vh;
+  }
 
-.criteria-pair textarea[data-type="sublist"] {
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 12px 15px;
-  font-size: 0.95rem;
-  color: #475569;
-  border: none;
-  resize: none;
-  min-height: 100px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
+  /* Tables */
+  #contestantTable {
+    font-size: 0.65rem;
+    min-width: 100%;
+  }
 
-/* Clean scrollbar for the form */
-#criteriaEditForm::-webkit-scrollbar {
-    width: 6px;
-}
-#criteriaEditForm::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 10px;
-}
+  #contestantTable th,
+  #contestantTable td {
+    padding: 0.15rem;
+    min-width: 60px;
+    font-size: 0.65rem;
+  }
 
-/* Force all children of criteriaEditForm to be full width */
-#criteriaEditForm > * {
-  flex: none !important;
-  width: 100% !important;
-}
+  /* Image Gallery */
+  #imageGallery {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 
-@media (max-width: 768px) {
-  .criteria-pair {
-    width: 100% !important;
-    flex: none !important;
+  #processImageGallery {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+  }
+
+  .contestant-card img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Modals */
+  #helpModal .modal-content,
+  #customizeModal .modal-content,
+  #finalizationModal .modal-content {
+    width: 95%;
+    padding: 1rem;
+    max-height: 85vh;
+  }
+
+  .criteria-title {
+    font-size: 0.95rem;
+  }
+
+  .criteria-sublist li {
+    font-size: 0.8rem;
+  }
+
+  /* Buttons */
+  #manualAddRoundBtn,
+  #deployBtn {
+    position: static;
+    width: 100%;
+    margin: 0.5rem 0;
+    display: block !important;
+  }
+
+  .help-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  /* Judge Cards */
+  .judge-table-container {
+    padding: 0.5rem;
+  }
+
+  .judge-table-scroll {
+    overflow-x: scroll;
+  }
+
+  /* Round Gallery */
+  .round-gallery-section {
+    padding: 0.75rem;
+  }
+
+  .round-gallery-section h3 {
+    font-size: 1rem;
+  }
+
+  /* Dropdowns */
+  #adminDropdown,
+  #judgeDropdown {
+    width: 10rem;
+    font-size: 0.75rem;
   }
 }
-@media (min-width: 769px) {
+
+/* ==================== SMALL MOBILE (480px - 767px) ==================== */
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Navigation */
+  nav a {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  /* Process Container */
+  #processContainer {
+    margin: 4rem auto 2rem;
+    max-width: 95%;
+  }
+
+  #processForm {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  /* Tables */
+  #contestantTable {
+    font-size: 0.7rem;
+  }
+
+  #contestantTable th,
+  #contestantTable td {
+    padding: 0.25rem;
+    min-width: 70px;
+  }
+
+  /* Image Gallery */
+  #imageGallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #processImageGallery {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .contestant-card img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  /* Modals */
+  #helpModal .modal-content,
+  #customizeModal .modal-content {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  /* Buttons */
+  #manualAddRoundBtn {
+    top: 5rem;
+    right: 2rem;
+    font-size: 0.85rem;
+  }
+
+  #deployBtn {
+    top: 5rem;
+    right: 9rem;
+    font-size: 0.85rem;
+  }
+
+  /* Criteria Form */
   .criteria-pair {
-    width: 100% !important;
-    flex: none !important;
+    flex: 1 1 100%;
+    min-width: 100%;
   }
 }
+
+/* ==================== TABLET (768px - 1023px) ==================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Process Container */
+  #processContainer {
+    max-width: 90%;
+    margin: 5rem auto 2rem;
+  }
+
+  #processContainer.active {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #processForm {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  /* Image Gallery */
+  #imageGallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #processImageGallery {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+
+  .contestant-card img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  /* Tables */
+  .judge-table-container {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Buttons */
+  #manualAddRoundBtn {
+    top: 5rem;
+    right: 4rem;
+  }
+
+  #deployBtn {
+    top: 5rem;
+    right: 12rem;
+  }
+
+  /* Criteria Form */
+  .criteria-pair {
+    flex: 1 1 100%;
+  }
+
+  #criteriaEditForm {
+    flex-direction: column;
+  }
+}
+
+/* ==================== LAPTOP (1024px - 1439px) ==================== */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  #processContainer {
+    max-width: 85%;
+  }
+
+  #processContainer.active {
+    flex-direction: row;
+    max-width: 1200px;
+  }
+
+  #processImageGallery {
+    flex: 0 0 40%;
+  }
+
+  /* Criteria Form */
+  .criteria-pair {
+    flex: 1 1 48%;
+    min-width: 280px;
+  }
+}
+
+/* ==================== DESKTOP (1440px+) ==================== */
+@media (min-width: 1440px) {
+  #processContainer.active {
+    max-width: 1400px;
+  }
+
+  #processImageGallery {
+    flex: 0 0 45%;
+  }
+}
+
+/* ==================== LANDSCAPE MOBILE ==================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  #helpModal .modal-content,
+  #customizeModal .modal-content,
+  #finalizationModal .modal-content {
+    max-height: 95vh;
+    overflow-y: scroll;
+  }
+
+  #processForm {
+    max-height: 85vh;
+  }
+}
+
+/* ==================== TOUCH DEVICES ==================== */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger tap targets for mobile */
+  button,
+  .help-icon,
+  nav a {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem;
+  }
+
+  /* Remove hover effects on touch devices */
+  .contestant-card img:hover,
+  .help-icon:hover {
+    transform: none;
+  }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  nav,
+  #helpIcon,
+  #manualAddRoundBtn,
+  #deployBtn,
+  .help-icon {
+    display: none !important;
+  }
+
+  #processContainer {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  #processForm {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}
+
+
+
+
