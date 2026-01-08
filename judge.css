@@ -30,6 +30,7 @@
   display: flex;
   gap: 0.5rem;
 }
+
 .loader-dots div {
   width: 12px;
   height: 12px;
@@ -37,6 +38,7 @@
   border-radius: 50%;
   animation: bounce 0.6s infinite alternate;
 }
+
 .loader-dots div:nth-child(2) { animation-delay: 0.2s; }
 .loader-dots div:nth-child(3) { animation-delay: 0.4s; }
 
@@ -54,6 +56,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   margin-bottom: 2rem;
 }
+
 .round-gallery-section h2 {
   color: #4f46e5;
   font-weight: 700;
@@ -80,10 +83,12 @@
   border: 2px solid #ccc;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .contestant-card img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
+
 .contestant-card p {
   margin-top: 0.5rem;
   font-weight: 600;
@@ -97,7 +102,7 @@
   top: 100%;
   margin-top: 0.5rem;
   width: 14rem;
-  background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(240,244,255,0.85)); /* semi-transparent for blur */
+  background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(240,244,255,0.85));
   color: #1f2937;
   border-radius: 0.75rem;
   box-shadow: 0 12px 30px rgba(0,0,0,0.18);
@@ -108,20 +113,16 @@
   transform: scale(0.95);
   transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
   pointer-events: none;
-
-  /* Backdrop blur: vendor-prefixed first, standard after */
-  -webkit-backdrop-filter: blur(10px);  /* Safari/iOS */
-  backdrop-filter: blur(10px);          /* modern browsers */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
-/* Show dropdown */
 #judgeDropdown.show {
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
 }
 
-/* Username & Role text */
 #judgeDropdown p {
   padding: 0.5rem 1.25rem;
   font-weight: 600;
@@ -130,12 +131,12 @@
   transition: all 0.2s ease-in-out;
   border-radius: 0.5rem;
 }
+
 #judgeDropdown p:hover {
-  background-color: #e0e7ff; /* light indigo background */
-  color: #4f46e5; /* indigo text */
+  background-color: #e0e7ff;
+  color: #4f46e5;
 }
 
-/* Logout button */
 #judgeDropdown button {
   width: 100%;
   text-align: left;
@@ -148,8 +149,9 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
+
 #judgeDropdown button:hover {
-  background-color: #f0e7ff; /* subtle purple highlight */
+  background-color: #f0e7ff;
   color: #4f46e5;
 }
 
@@ -162,11 +164,11 @@
   color: #ffffff;
   transition: transform 0.25s ease;
 }
+
 #judgeUserIconContainer.active::after {
   transform: rotate(-180deg);
 }
 
-/* Optional: subtle hover on icon itself */
 #judgeUserIconContainer:hover #judgeUserIcon {
   transform: scale(1.05);
   transition: transform 0.2s ease;
@@ -349,4 +351,284 @@ main {
     width: 100px !important;
     height: 100px !important;
     border-radius: 8px;
+}
+
+/* ======= QUESTION MARK CRITERIA (JUDGE DASHBOARD) ======= */
+.criteria-title {
+  font-weight: 700;
+  font-size: 1.125rem; /* text-lg */
+  color: #4f46e5;       /* indigo-700 */
+}
+
+.criteria-max {
+  font-size: 0.875rem;  /* text-sm */
+  color: #4b5563;       /* gray-600 */
+  margin-bottom: 0.5rem;
+}
+
+.criteria-block ul {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+/* ======= SPACING OF IMAGES ICONS ======= */
+.images-icon:hover,
+.help-icon:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+/* ======= INPUT FIELDS JUDGE DASHBOARD SCORES ======= */
+.score-input {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 600;
+  width: 60px;
+  height: 28px;
+  line-height: 1.4rem;
+
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.score-input:hover {
+  background-color: #f3f4f6;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.score-input:focus {
+  outline: none;
+  border: 2px solid #4f46e5;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.3);
+  transform: scale(1.05);
+}
+
+.score-input:not(:hover):not(:focus) {
+  transform: scale(1);
+  background-color: transparent;
+}
+
+.score-input::-webkit-inner-spin-button,
+.score-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.score-total {
+  margin-left: 1rem;
+  font-weight: 700;
+  color: #4f46e5;
+  display: inline-block;
+  min-width: 80px;
+  text-align: left;
+}
+
+.score-total.over-limit {
+  color: #dc2626;
+  font-weight: 800;
+}
+
+.score-total.submitted-total {
+  color: #16a34a;
+  font-weight: 800;
+}
+
+@keyframes shake-interval {
+  0%, 15%, 85%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+}
+
+.score-total.shake {
+  animation: shake-interval 1s infinite; /* 🔹 1s interval for breathing effect */
+}
+
+
+.over-limit-cell,
+.blank-cell {
+  border: 2px solid #dc2626 !important;
+  background-color: #fee2e2;
+}
+
+/* =========================== JUDGE RESPONSIVE =========================== */
+
+/* ==================== MOBILE (320px - 767px) ==================== */
+@media (max-width: 767px) {
+  /* Header */
+  header nav {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.25rem;
+  }
+
+  /* Main Container */
+  main {
+    padding-top: 6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Round Wrappers */
+  .round-wrapper {
+    max-width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .round-wrapper h1 {
+    font-size: 1.25rem;
+  }
+
+  /* Judge Cards */
+  .judge-card {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .judge-table-scroll {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .judge-table-container table {
+    min-width: 600px;
+  }
+
+  .judge-table-container th,
+  .judge-table-container td {
+    min-width: 80px;
+    font-size: 0.7rem;
+    padding: 0.25rem;
+  }
+
+  /* Score Inputs */
+  .score-input {
+    width: 50px;
+    height: 24px;
+    font-size: 0.85rem;
+  }
+
+  .score-total {
+    font-size: 0.9rem;
+    min-width: 60px;
+  }
+
+  /* Image Gallery */
+  .round-gallery-section {
+    grid-template-columns: 1fr;
+  }
+
+  .contestant-card img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Criteria Modal */
+  #criteriaModal .modal-content {
+    width: 95%;
+    max-width: 95%;
+    padding: 1rem;
+    max-height: 90vh;
+  }
+
+  #criteriaContent {
+    padding: 1rem;
+  }
+
+  #criteriaContent h3 {
+    font-size: 1rem;
+  }
+
+  #criteriaContent li {
+    font-size: 0.85rem;
+  }
+
+  /* Dropdown */
+  #judgeDropdown {
+    width: 11rem;
+    right: -1rem;
+  }
+
+  /* Help Icons */
+  .help-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    top: 0.25rem;
+    right: 0.25rem;
+  }
+}
+
+/* ==================== TABLET (768px - 1023px) ==================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  main {
+    padding-top: 7rem;
+  }
+
+  .round-wrapper {
+    max-width: 90%;
+    margin: 0 auto 2rem;
+  }
+
+  .judge-table-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .judge-table-container th,
+  .judge-table-container td {
+    min-width: 100px;
+    font-size: 0.8rem;
+  }
+
+  .score-input {
+    width: 55px;
+  }
+
+  .contestant-card img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  #criteriaModal .modal-content {
+    width: 85%;
+    max-width: 600px;
+  }
+}
+
+/* ==================== LAPTOP & DESKTOP (1024px+) ==================== */
+@media (min-width: 1024px) {
+  main {
+    padding-top: 8rem;
+  }
+
+  .round-wrapper {
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+  }
+}
+
+/* ==================== LANDSCAPE MODE ==================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  #criteriaModal .modal-content {
+    max-height: 95vh;
+    overflow-y: scroll;
+  }
+
+  .judge-card {
+    max-height: 85vh;
+    overflow-y: auto;
+  }
 }
